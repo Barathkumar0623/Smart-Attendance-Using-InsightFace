@@ -1,0 +1,259 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4 fw-bold">
+        Dashboard Overview
+    </h2>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow border-0 h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Total Students</h6>
+                    <h2 class="fw-bold text-primary">{{ students }}</h2>
+                    <small>Registered Students</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow border-0 h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Attendance Records</h6>
+                    <h2 class="fw-bold text-success">{{ attendance }}</h2>
+                    <small>Total Attendance</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow border-0 h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Today's Attendance</h6>
+                    <h2 class="fw-bold text-warning">{{ today }}</h2>
+                    <small>Today's Present</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card shadow border-0 h-100">
+                <div class="card-body">
+                    <h6 class="text-muted">Recognition Accuracy</h6>
+                    <h2 class="fw-bold text-danger">{{ recognition }}%</h2>
+                    <small>Average Accuracy</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Status Cards -->
+    <div class="row mt-4">
+
+        <div class="col-lg-6">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body">
+
+                    <h5>Latest Emotion</h5>
+
+                    <h2 class="text-primary mt-3">
+                        {{ emotion }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body">
+
+                    <h5>System Status</h5>
+
+                    <p class="mt-3">Face Recognition : Active</p>
+                    <p>Emotion Detection : Active</p>
+                    <p>Attendance System : Running</p>
+                    <p>Dashboard : Connected</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Charts -->
+    <div class="row mt-4">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow border-0">
+
+                <div class="card-header">
+
+                    <h5 class="mb-0">
+                        Attendance Trend
+                    </h5>
+
+                </div>
+                <div class="card-body" style="height:350px;">
+                    <canvas id="attendanceChart" height="300">
+                    </canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card shadow border-0">
+
+                <div class="card-header">
+
+                    <h5 class="mb-0">
+                        Emotion Distribution
+                    </h5>
+
+                </div>
+                <div class="card-body" style="height:350px;">
+                    <canvas id="emotionChart" height="300"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Attendance -->
+
+    <div class="card shadow border-0 mt-4">
+
+        <div class="card-header">
+
+            <h5 class="mb-0">
+                Recent Attendance
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Time</th>
+                            <th>Emotion</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for row in recent %}
+
+                        <tr>
+
+                            <td>{{ row.ID }}</td>
+
+                            <td>{{ row.Name }}</td>
+
+                            <td>{{ row.Department }}</td>
+
+                            <td>{{ row.Time }}</td>
+
+                            <td>{{ row.Expression }}</td>
+
+                            <td>
+
+                                <span class="badge bg-success">
+
+                                    {{ row.Status }}
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const attendanceData = JSON.parse('{{ attendance_chart | tojson | safe }}');
+    const emotionData = JSON.parse('{{ emotion_chart | tojson | safe }}');
+
+    new Chart(document.getElementById("attendanceChart"), {
+        type: "line",
+        data: {
+            labels: attendanceData.labels,
+            datasets: [{
+                label: "Attendance",
+                data: attendanceData.values,
+                borderColor: "#0d6efd"
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    new Chart(document.getElementById("emotionChart"), {
+        type: "pie",
+        data: {
+            labels: emotionData.labels,
+            datasets: [{
+                data: emotionData.values
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+});
+</script>
+
+{% endblock %}

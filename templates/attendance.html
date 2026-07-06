@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Attendance Records</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📅 Attendance Records</h1>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Department</th>
+<th>Year</th>
+<th>Date</th>
+<th>Time</th>
+<th>Recognition</th>
+<th>Expression</th>
+<th>Expression Confidence</th>
+<th>Status</th>
+
+</tr>
+
+{% for row in attendance %}
+
+<tr>
+
+<td>{{ row.ID }}</td>
+<td>{{ row.Name }}</td>
+<td>{{ row.Department }}</td>
+<td>{{ row.Year }}</td>
+<td>{{ row.Date }}</td>
+<td>{{ row.Time }}</td>
+<td>{{ row.Recognition }}</td>
+<td>{{ row.Expression }}</td>
+<td>{{ row.Expression_Confidence }}</td>
+<td>{{ row.Status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a class="back-btn" href="/">⬅ Dashboard</a>
+
+</div>
+
+</body>
+
+</html>

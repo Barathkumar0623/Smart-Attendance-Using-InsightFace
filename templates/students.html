@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Students</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👨‍🎓 Registered Students</h1>
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Department</th>
+    <th>Year</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>{{ student.ID }}</td>
+
+<td>{{ student.Name }}</td>
+
+<td>{{ student.Department }}</td>
+
+<td>{{ student.Year }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a class="back-btn" href="/">⬅ Dashboard</a>
+
+</div>
+
+</body>
+
+</html>

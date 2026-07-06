@@ -1,0 +1,192 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#F4F7FC;
+}
+
+.wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+
+    width:260px;
+    background:#1E293B;
+    color:white;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    padding:30px 20px;
+}
+
+.logo{
+
+    text-align:center;
+    margin-bottom:50px;
+    font-size:24px;
+    font-weight:600;
+}
+
+.logo i{
+
+    color:#3B82F6;
+}
+
+.sidebar ul{
+
+    list-style:none;
+}
+
+.sidebar ul li{
+
+    margin:18px 0;
+}
+
+.sidebar ul li a{
+
+    display:block;
+    color:#CBD5E1;
+    text-decoration:none;
+    padding:14px 18px;
+    border-radius:10px;
+    transition:.3s;
+    font-size:16px;
+}
+
+.sidebar ul li a:hover{
+
+    background:#2563EB;
+    color:white;
+}
+
+.sidebar ul li a i{
+
+    margin-right:10px;
+}
+
+/* Main */
+
+.main-content{
+
+    margin-left:260px;
+    width:calc(100% - 260px);
+}
+
+/* Topbar */
+
+.topbar{
+
+    height:75px;
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 35px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.topbar h2{
+
+    font-size:24px;
+    color:#334155;
+}
+
+.profile{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:18px;
+}
+
+.profile i{
+
+    font-size:28px;
+    color:#2563EB;
+}
+
+/* Content */
+
+.content{
+
+    padding:35px;
+}
+
+/* Cards */
+
+.card{
+
+    border:none;
+    border-radius:16px;
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+}
+
+.card-body{
+
+    padding:30px;
+}
+
+.card-title{
+
+    color:#64748B;
+    font-size:16px;
+}
+
+.card-text{
+
+    font-size:32px;
+    font-weight:700;
+    color:#2563EB;
+}
+
+/* Table */
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+th{
+
+    background:#2563EB;
+    color:white;
+    padding:16px;
+}
+
+td{
+
+    padding:14px;
+    border-bottom:1px solid #eee;
+}
+
+tr:hover{
+
+    background:#F8FAFC;
+}
+
+/* Button */
+
+.btn{
+
+    border-radius:10px;
+}
